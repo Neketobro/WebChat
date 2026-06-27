@@ -1,9 +1,8 @@
+import { RouterProvider } from "react-router";
+import router from "./router/routerClient";
+
 function App() {
-  return (
-    <>
-      <h1>WebChat</h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
