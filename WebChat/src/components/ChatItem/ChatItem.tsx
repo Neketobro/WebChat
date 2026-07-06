@@ -7,8 +7,8 @@ export function ChatItem() {
         <Avatar />
       </div>
       <div className="col-span-2 font-medium text-[18px]">Name name</div>
-      <div className="col-span-1 text-[14px] text-(--accent) text-end">19:02</div>
-      <div className="col-span-2 text-[16px] text-(--accent)">last message</div>
+      <div className="col-span-1 text-[14px] text-(--social-bg) text-end">19:02</div>
+      <div className="col-span-2 text-[16px] text-(--social-bg)">last message</div>
       <div className="col-span-1 text-end"><Badge /></div>
     </div>
   );
