@@ -7,7 +7,7 @@ export function ChatLayout() {
   const [chatActive, setChatActive] = useState<boolean>(true);
 
   return (
-    <div className="flex flex-row justify-between p-[20px]">
+    <div className="h-[92vh] flex flex-row justify-between px-3 py-1">
       <Sidebar />
       <MainContent />
       {chatActive && <UserInfo />}
