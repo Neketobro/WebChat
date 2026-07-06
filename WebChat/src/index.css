@@ -2,7 +2,7 @@
 
 :root {
   --text: #112d4e;
-  /* --text-h: #08060d; */
+  --text-h: #93ABE4;
   --bg-main: #fff;
   --bg: #f9f7f7;
   --border: #dbe2ef;
@@ -51,6 +51,30 @@
 body {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  @media (max-width: 1024px) {
+    font-size: 24px;
+    /* margin: 20px 0; */
+  }
+}
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  @media (max-width: 1024px) {
+    font-size: 18px;
+  }
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
 }
 
 /*

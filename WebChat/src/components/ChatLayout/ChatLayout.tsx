@@ -4,13 +4,13 @@ import { UserInfo } from "../UserInfo";
 import { useState } from "react";
 
 export function ChatLayout() {
-  const isChatActive = useState<boolean>(false);
+  const [chatActive, setChatActive] = useState<boolean>(true);
 
   return (
-    <div className="flex flex-row justify-between p-[10px]">
+    <div className="flex flex-row justify-between p-[20px]">
       <Sidebar />
       <MainContent />
-      {isChatActive && <UserInfo />}
+      {chatActive && <UserInfo />}
     </div>
   );
 }
