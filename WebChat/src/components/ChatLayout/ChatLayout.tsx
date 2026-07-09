@@ -9,8 +9,9 @@ export function ChatLayout() {
   return (
     <div className="h-[92vh] flex flex-row justify-between px-3 py-1 gap-x-2 overflow-hidden">
       <Sidebar />
-      <MainContent />
-      {chatActive && <UserInfo />}
+      <MainContent onOpen={() => setChatActive(true)} />
+
+      {chatActive && <UserInfo onClose={() => setChatActive(false)} />}
     </div>
   );
 }
