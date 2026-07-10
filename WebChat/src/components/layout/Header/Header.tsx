@@ -1,5 +1,5 @@
-import { MyProfileElement } from "../MyProfileElement";
-import { IconButton } from "../UI";
+import { MyProfileElement } from "../../profile";
+import { IconButton } from "../../UI";
 
 export function Header() {
     return(

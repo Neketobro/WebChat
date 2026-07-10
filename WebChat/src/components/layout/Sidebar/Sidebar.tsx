@@ -1,5 +1,5 @@
-import { ChatList } from "../ChatList";
-import { Button, IconButton, SearchInput } from "../UI";
+import { ChatList } from "../../chat/ChatList";
+import { Button, IconButton, SearchInput } from "../../UI";
 
 export function Sidebar() {
   return (
@@ -8,7 +8,7 @@ export function Sidebar() {
         <span className="text-[24px] font-medium">Messages</span>
         <div className="flex items-center gap-x-2">
           <IconButton />
-          <Button>New chat +</Button>
+          <Button onClick={()=>{}}>New chat +</Button>
         </div>
       </div>
       <SearchInput />

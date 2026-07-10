@@ -1,4 +1,4 @@
-import { Avatar, StatusBar } from "../UI";
+import { Avatar, StatusBar } from "../../UI";
 
 export function MyProfileElement() {
   return (

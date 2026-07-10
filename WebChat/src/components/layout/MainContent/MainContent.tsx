@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button, MessageInput } from "../UI";
-import { MyProfileElement } from "../MyProfileElement";
+import { Button, MessageInput } from "../../UI";
+import { MyProfileElement } from "../../profile";
 
 type Props = {
   onOpen: () => void;

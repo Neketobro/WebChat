@@ -1,6 +1,6 @@
 import { Sidebar } from "../Sidebar";
 import { MainContent } from "../MainContent";
-import { UserProfileSidebar } from "../UserProfileSidebar";
+import { UserProfileSidebar } from "../../profile";
 import { useState } from "react";
 
 export function ChatLayout() {

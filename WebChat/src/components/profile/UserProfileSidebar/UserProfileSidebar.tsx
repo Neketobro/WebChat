@@ -1,4 +1,4 @@
-import { Avatar, Button } from "../UI";
+import { Avatar, Button } from "../../UI";
 
 interface UserInfoProps {
   onClose: () => void;

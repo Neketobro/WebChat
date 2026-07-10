@@ -1,4 +1,4 @@
-import { Avatar, Badge } from "../UI";
+import { Avatar, Badge } from "../../UI";
 
 export function ChatItem() {
   return (

@@ -8,7 +8,6 @@ export function Avatar({ size = "sm" }: Props) {
         md: "p-5",
         lg: "p-10"
      }
-
   return (
     <span className={`${currentSize[size]} rounded-[50%] bg-(--social-bg) font-medium`}>NA</span>
   );
