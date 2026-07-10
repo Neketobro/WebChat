@@ -1,17 +1,17 @@
 import { Sidebar } from "../Sidebar";
 import { MainContent } from "../MainContent";
-import { UserInfo } from "../UserInfo";
+import { UserProfileSidebar } from "../UserProfileSidebar";
 import { useState } from "react";
 
 export function ChatLayout() {
-  const [chatActive, setChatActive] = useState<boolean>(true);
+  const [isOpenUserProfileSB, setOpenUserProfileSB] = useState<boolean>(false);
 
   return (
     <div className="h-[92vh] flex flex-row justify-between px-3 py-1 gap-x-2 overflow-hidden">
       <Sidebar />
-      <MainContent onOpen={() => setChatActive(true)} />
+      <MainContent onOpen={() => setOpenUserProfileSB(prev => !prev)} />
 
-      {chatActive && <UserInfo onClose={() => setChatActive(false)} />}
+       <UserProfileSidebar isOpen={isOpenUserProfileSB} onClose={() => setOpenUserProfileSB(false)} />
     </div>
   );
 }
