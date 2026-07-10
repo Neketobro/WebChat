@@ -1,24 +1,23 @@
 import { useState } from "react";
-import { Button, MessageInput } from "../../UI";
-import { MyProfileElement } from "../../profile";
+import { MessageInput } from "../../UI";
+import { ChatHeader } from "../../chat";
 
 type Props = {
-  onOpen: () => void;
+  openUserSidebar: () => void;
 };
 
-export function MainContent({ onOpen }: Props) {
+export function ChatWindow({ openUserSidebar }: Props) {
   const [chatOpen, setChatOpen] = useState<boolean>(true);
 
   return (
     <div className="bg-(--bg) w-full min-w-4xl h-full p-2 flex flex-col justify-between">
       {chatOpen ? (
         <>
-          <div className="px-2 flex gap-4">
-            <MyProfileElement />
-            <Button onClick={onOpen}>Open</Button>
+          <div className="p-2 flex items-center justify-between gap-4 border-b-[2px] border-(--border)">
+            <ChatHeader openUserSidebar={openUserSidebar} />
           </div>
           <div>Chat messages</div>
-          <div>
+          <div className="p-2 border-t-[2px] border-(--border)">
             <MessageInput />
           </div>
         </>

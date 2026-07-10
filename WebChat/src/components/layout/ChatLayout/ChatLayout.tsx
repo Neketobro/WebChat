@@ -1,5 +1,5 @@
 import { Sidebar } from "../Sidebar";
-import { MainContent } from "../MainContent";
+import { ChatWindow } from "../ChatWindow";
 import { UserProfileSidebar } from "../../profile";
 import { useState } from "react";
 
@@ -9,7 +9,7 @@ export function ChatLayout() {
   return (
     <div className="h-[92vh] flex flex-row justify-between px-3 py-1 gap-x-2 overflow-hidden">
       <Sidebar />
-      <MainContent onOpen={() => setOpenUserProfileSB(prev => !prev)} />
+      <ChatWindow openUserSidebar={() => setOpenUserProfileSB(prev => !prev)} />
 
        <UserProfileSidebar isOpen={isOpenUserProfileSB} onClose={() => setOpenUserProfileSB(false)} />
     </div>
