@@ -4,15 +4,16 @@ import { Avatar, IconButton } from "../../UI";
 interface UserInfoProps {
   onClose: () => void;
   isOpen: boolean;
+  style?: string;
 }
 
-export function UserProfileSidebar({ onClose, isOpen }: UserInfoProps) {
+export function UserProfileSidebar({ onClose, isOpen, style}: UserInfoProps) {
   const styles =
-    "bg-(--bg) transition transition-[width] delay-150 duration-300 ease-in-out overflow-hidden flex flex-col items-center gap-2";
+    "bg-(--bg) transition transition-[width] duration-300 ease-in-out overflow-hidden flex flex-col items-center gap-2";
 
   return (
     <div
-      className={!isOpen ? `${styles} w-0` : `${styles} w-140`}
+      className={!isOpen ? `${styles} ${style} w-0` : `${styles} ${style} w-140`}
       onTransitionStart={() => {}}
       onTransitionEnd={() => {}}
     >
