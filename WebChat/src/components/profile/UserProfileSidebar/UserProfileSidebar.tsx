@@ -1,4 +1,5 @@
-import { Avatar, Button } from "../../UI";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { Avatar, IconButton } from "../../UI";
 
 interface UserInfoProps {
   onClose: () => void;
@@ -13,9 +14,9 @@ export function UserProfileSidebar({ onClose, isOpen }: UserInfoProps) {
     <div
       className={!isOpen ? `${styles} w-0` : `${styles} w-140`}
       onTransitionStart={() => {}}
-      onTransitionEnd={() => { }}
+      onTransitionEnd={() => {}}
     >
-      <Button onClick={onClose}>Close</Button>
+      <IconButton onClick={onClose} icon={<XMarkIcon />} />
       <Avatar size="lg" />
       <h2>Jhon Smith</h2>
     </div>

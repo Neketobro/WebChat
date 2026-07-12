@@ -1,11 +1,16 @@
-import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import type React from "react";
 
-export function IconButton() {
-    return (
-        <button>
-            <Cog6ToothIcon className="size-6 text-(--social-bg) hover:text-(--accent) active:scale-95 cursor-pointer" />
-        </button>
-    )
+type Props = {
+  icon: React.ReactNode;
+  onClick: () => void;
+};
+
+export function IconButton({ icon, onClick }: Props) {
+  return (
+    <button onClick={onClick} className="bg-[red] m-1 size-6 text-(--social-bg) hover:text-(--accent) active:scale-95 cursor-pointer">
+      {icon}
+    </button>
+  );
 }
 
 // Setting

@@ -1,5 +1,6 @@
-import { Button, IconButton } from "../../UI";
-import { ChatUserInfo } from "../ChatUserInfo";
+import { UserProfileElement } from "../../profile";
+import { IconButton } from "../../UI";
+import { ArrowUturnLeftIcon, Bars3Icon } from "@heroicons/react/24/outline";
 
 type Props = {
   openUserSidebar: () => void;
@@ -8,13 +9,12 @@ type Props = {
 export function ChatHeader({ openUserSidebar }: Props) {
   return (
     <>
-      <div className="flex gap-4">
-        <div>back btn</div>
-        <ChatUserInfo />
+      <div className="flex gap-4 items-center">
+        <IconButton onClick={()=>{}} icon={<ArrowUturnLeftIcon />} />
+        <UserProfileElement />
       </div>
-      <div className="flex gap-4">
-        <div>menu btn</div>
-        <Button onClick={openUserSidebar}>Open</Button>
+      <div className="flex gap-4 items-center">
+        <IconButton onClick={openUserSidebar} icon={<Bars3Icon />} />
       </div>
     </>
   );

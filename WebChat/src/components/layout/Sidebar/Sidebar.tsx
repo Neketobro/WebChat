@@ -1,3 +1,4 @@
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { ChatList } from "../../chat/ChatList";
 import { Button, IconButton, SearchInput } from "../../UI";
 
@@ -7,7 +8,7 @@ export function Sidebar() {
       <div className="flex justify-between items-center">
         <span className="text-[24px] font-medium">Messages</span>
         <div className="flex items-center gap-x-2">
-          <IconButton />
+          <IconButton icon={<PencilSquareIcon />} />
           <Button onClick={()=>{}}>New chat +</Button>
         </div>
       </div>
