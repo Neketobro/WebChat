@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { MessageInput } from "../../UI";
-import { ChatHeader } from "../../chat";
+import { ChatFooter, ChatHeader } from "../../chat";
 
 type Props = {
   openUserSidebar: () => void;
@@ -17,8 +16,8 @@ export function ChatWindow({ openUserSidebar }: Props) {
             <ChatHeader openUserSidebar={openUserSidebar} />
           </div>
           <div>Chat messages</div>
-          <div className="p-2 border-t-[2px] border-(--border)">
-            <MessageInput />
+          <div className="p-2 border-t-[2px] border-(--border) flex items-center">
+            <ChatFooter />
           </div>
         </>
       ) : (
