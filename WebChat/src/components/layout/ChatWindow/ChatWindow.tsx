@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ChatFooter, ChatHeader } from "../../chat";
 
 type Props = {
