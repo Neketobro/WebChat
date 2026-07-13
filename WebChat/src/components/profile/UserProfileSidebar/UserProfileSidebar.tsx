@@ -9,7 +9,7 @@ interface UserInfoProps {
 
 export function UserProfileSidebar({ onClose, isOpen, style}: UserInfoProps) {
   const styles =
-    "bg-(--bg) transition transition-[width] duration-300 ease-in-out overflow-hidden flex flex-col items-center gap-2";
+    "bg-(--bg) transition transition-[width] duration-500 overflow-hidden flex flex-col items-center gap-2";
 
   return (
     <div

@@ -4,13 +4,14 @@ import { ArrowUturnLeftIcon, Bars3Icon } from "@heroicons/react/24/outline";
 
 type Props = {
   openUserSidebar: () => void;
+  onCloseChat: () => void;
 };
 
-export function ChatHeader({ openUserSidebar }: Props) {
+export function ChatHeader({ openUserSidebar, onCloseChat }: Props) {
   return (
     <>
       <div className="flex gap-4 items-center">
-        <IconButton onClick={()=>{}} icon={<ArrowUturnLeftIcon />} />
+        <IconButton onClick={onCloseChat} icon={<ArrowUturnLeftIcon />} />
         <UserProfileElement />
       </div>
       <div className="flex gap-4 items-center">
