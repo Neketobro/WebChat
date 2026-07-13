@@ -1,4 +1,5 @@
 import { ChatFooter, ChatHeader } from "../../chat";
+import { MessageBubble } from "../MessageBubble";
 
 type Props = {
   openUserSidebar: () => void;
@@ -27,7 +28,9 @@ export function ChatWindow({ openUserSidebar, isOpenUserProfileSB, chatOpen, onC
           >
             <ChatHeader onCloseChat={onCloseChat} openUserSidebar={openUserSidebar} />
           </div>
-          <div>Chat messages</div>
+          <div className="flex-1 min-h-0">
+            <MessageBubble />
+          </div>
           <div className="p-2 border-t-[2px] border-(--border) flex items-center">
             <ChatFooter />
           </div>
