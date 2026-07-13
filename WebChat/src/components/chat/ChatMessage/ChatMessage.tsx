@@ -2,7 +2,7 @@ type Props = {
   //   id: string;
   text: string;
   owner: "sent" | "received";
-  date ?: string;
+  date ?: string; // temporary solution
 };
 
 export function ChatMessage({ owner, text, date = "12:12" }: Props) {
