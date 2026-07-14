@@ -17,7 +17,7 @@ export function ChatMessage({ owner, text, date = "12:12" }: Props) {
   };
 
   return (
-    <div className={`w-full bg-[lightyellow] flex ${owner === 'sent' ? "justify-end" : "justify-start"}`}>
+    <div className={`w-full flex ${owner === 'sent' ? "justify-end" : "justify-start"}`}>
       <div className={`w-max max-w-3/5 p-2 rounded-sm wrap-break-word ${stylesContainer[owner]}`}>
         {text}
         <p className={`${stylesText[owner]} mt-1 text-xs text-end`}>{date}</p>
