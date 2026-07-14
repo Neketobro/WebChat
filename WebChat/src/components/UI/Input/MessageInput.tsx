@@ -17,7 +17,7 @@ export function MessageInput() {
       <textarea
         ref={textareaRef}
         onInput={handleInput}
-        className="resize-none outline-none overflow-y-auto max-h-[160px] h-[30px] w-full"
+        className="resize-none outline-none overflow-y-auto max-h-[160px] h-[35px] w-full"
       />
     </div>
   );
