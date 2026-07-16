@@ -2,18 +2,24 @@ import { useState } from "react";
 import { Input } from "../../components";
 import { useNavigate } from "react-router";
 
-export function LoginPage() {
+export function RegisterPage() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [rememberMe, setRememberMe] = useState(false);
+  const [passwordRepeat, setPasswordRepeat] = useState("");
 
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (password !== passwordRepeat) {
+      console.log("undefiend password");
+      return;
+    }
+    console.log("password confrim");
 
     try {
       setLoading(true);
@@ -27,10 +33,7 @@ export function LoginPage() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex items-center justify-center"
-    >
+    <form onSubmit={handleSubmit} className="flex items-center justify-center">
       <div className="p-6 w-[23vw] min-w-[300px] bg-(--accent-bg) rounded-sm flex flex-col items-center gap-3">
         <span>
           <h1>Login</h1>
@@ -58,32 +61,17 @@ export function LoginPage() {
           label="Password"
           maxLength={15}
         />
-
-        <div className="w-full flex items-center justify-between">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={rememberMe}
-              onChange={() => setRememberMe((prev) => !prev)}
-              className="w-4 h-4"
-            />
-
-            {/* MAKE COMPONENT CHECKBOX */}
-
-            <span className="text-sm text-(--text)">Remember me</span>
-          </label>
-
-          <button
-            type="button"
-            className="
-                text-sm
-                text-(--accent)
-                hover:underline
-              "
-          >
-            Forgot password?
-          </button>
-        </div>
+        <Input
+          id="passwordrepeat"
+          name="passwordrepeat"
+          type="password"
+          placeholder="Repeat your password"
+          autoComplete="current-password"
+          value={passwordRepeat}
+          onChange={(e) => setPasswordRepeat(e.target.value)}
+          label="Repeat password"
+          maxLength={15}
+        />
 
         <button
           type="submit"
@@ -101,20 +89,21 @@ export function LoginPage() {
               disabled:cursor-not-allowed
             "
         >
-          {loading ? "Loading..." : "Login"}
+          {loading ? "Loading..." : "Register"}
         </button>
 
         {/* Register */}
         <p className="text-center text-sm text-(--text)">
-          Haven't an account?{" "}
-          <button onClick={()=>navigate("/auth/register")}
+          Have an account?{" "}
+          <button
+            onClick={() => navigate("/auth/login")}
             type="button"
             className="
                 text-(--accent)
                 hover:underline
               "
           >
-            Register
+            Login
           </button>
         </p>
       </div>
