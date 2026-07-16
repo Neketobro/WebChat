@@ -1,10 +1,15 @@
 import { createBrowserRouter } from "react-router";
-import { WebChatPage } from "../pages";
+import { WebChatPage,  LoginPage } from "../pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    children: [{ index: true, Component: WebChatPage }],
+    children: [
+      { index: true, Component: LoginPage },
+      {
+        children: [{ path: "user", Component: WebChatPage }],
+      },
+    ],
   },
 ]);
 
