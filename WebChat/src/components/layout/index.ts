@@ -5,3 +5,4 @@ export * from "./Sidebar";
 export * from "./MessageBubble";
 export * from "./AuthGuard";
 export * from "./AuthLayout";
+export * from "./PageNotFound";
