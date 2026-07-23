@@ -1,30 +1,48 @@
 import { useState } from "react";
 import { Input } from "../../components";
 import { useNavigate } from "react-router";
+import { registerUser } from "../../api/httpClient";
+
+type User = {
+  username: string;
+  email: string;
+  password: string;
+};
 
 export function RegisterPage() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState<string>("");
 
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!email.trim() || !password.trim() || !username.trim()) {
+      console.log("undefiend email or password");
+      return;
+    }
+
     if (password !== passwordRepeat) {
       console.log("undefiend password");
       return;
     }
-    console.log("password confrim");
+
+    const data: User = {
+      username,
+      email,
+      password,
+    };
 
     try {
       setLoading(true);
 
-      // API request
+      await registerUser(data);
 
       await new Promise((resolve) => setTimeout(resolve, 1500));
     } finally {
@@ -32,12 +50,26 @@ export function RegisterPage() {
     }
   };
 
+  // add REGAX & COLOR FOR INPUT (error, warning, ok)
+
   return (
     <form onSubmit={handleSubmit} className="flex items-center justify-center">
       <div className="p-6 w-[23vw] min-w-[300px] bg-(--accent-bg) rounded-sm flex flex-col items-center gap-3">
         <span>
           <h1>Login</h1>
         </span>
+
+        <Input
+          id="username"
+          name="username"
+          type="text"
+          placeholder="Enter your username"
+          autoComplete="username"
+          value={username}
+          onChange={(e: any) => setUsername(e.target.value)}
+          label="Username"
+          maxLength={30}
+        />
 
         <Input
           id="email"
@@ -50,6 +82,7 @@ export function RegisterPage() {
           label="Email or login"
           maxLength={30}
         />
+
         <Input
           id="password"
           name="password"
@@ -76,6 +109,9 @@ export function RegisterPage() {
         <button
           type="submit"
           disabled={loading}
+          onClick={() => {
+            handleSubmit;
+          }}
           className="
               w-full
               h-12
