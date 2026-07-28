@@ -15,21 +15,47 @@ export function RegisterPage() {
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
   const [passwordRepeat, setPasswordRepeat] = useState<string>("");
-
   const [loading, setLoading] = useState(false);
+
+  const [inputErrorTextUsername, setInputErrorTextUsername] =
+    useState<string>("");
+
+  const [inputErrorTextEmail, setInputErrorTextEmail] = useState<string>("");
+
+  const [inputErrorTextPassword, setInputErrorTextPassword] =
+    useState<string>("");
+
+  const [inputErrorTextPasswordR, setInputErrorTextPasswordR] =
+    useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!email.trim() || !password.trim() || !username.trim()) {
-      console.log("undefiend email or password");
+    if (
+      !username.trim() ||
+      !email.trim() ||
+      !password.trim() ||
+      !passwordRepeat.trim()
+    ) {
+      setInputErrorTextUsername("Username is required");
+      setInputErrorTextEmail("Email is required");
+      setInputErrorTextPassword("Password is required");
+      setInputErrorTextPasswordR("Password is required");
       return;
     }
 
+    if (!username.trim())
+      return setInputErrorTextUsername("Username is required");
+    if (!email.trim()) return setInputErrorTextEmail("Email is required");
+    if (!password.trim())
+      return setInputErrorTextPassword("Password is required");
+    if (!passwordRepeat.trim())
+      return setInputErrorTextPasswordR("Password is required");
+
     if (password !== passwordRepeat) {
-      console.log("undefiend password");
+      setInputErrorTextPassword("password does not match");
+      setInputErrorTextPasswordR("password does not match");
       return;
     }
 
@@ -41,9 +67,7 @@ export function RegisterPage() {
 
     try {
       setLoading(true);
-
       await registerUser(data);
-
       await new Promise((resolve) => setTimeout(resolve, 1500));
     } finally {
       setLoading(false);
@@ -54,7 +78,7 @@ export function RegisterPage() {
 
   return (
     <form onSubmit={handleSubmit} className="flex items-center justify-center">
-      <div className="p-6 w-[23vw] min-w-[300px] bg-(--accent-bg) rounded-sm flex flex-col items-center gap-3">
+      <div className="p-6 w-[23vw] min-w-[300px] md:min-w-[400px] bg-(--accent-bg) rounded-sm flex flex-col items-center gap-3">
         <span>
           <h1>Login</h1>
         </span>
@@ -66,9 +90,14 @@ export function RegisterPage() {
           placeholder="Enter your username"
           autoComplete="username"
           value={username}
-          onChange={(e: any) => setUsername(e.target.value)}
+          onChange={(e: any) => {
+            setUsername(e.target.value);
+            setInputErrorTextUsername("");
+          }}
           label="Username"
           maxLength={30}
+          minLength={5}
+          errorText={inputErrorTextUsername}
         />
 
         <Input
@@ -78,9 +107,14 @@ export function RegisterPage() {
           placeholder="Enter your email or login"
           autoComplete="username"
           value={email}
-          onChange={(e: any) => setEmail(e.target.value)}
+          onChange={(e: any) => {
+            setEmail(e.target.value);
+            setInputErrorTextEmail("");
+          }}
           label="Email or login"
           maxLength={30}
+          minLength={5}
+          errorText={inputErrorTextEmail}
         />
 
         <Input
@@ -90,9 +124,14 @@ export function RegisterPage() {
           placeholder="Enter your password"
           autoComplete="current-password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setInputErrorTextPassword("");
+          }}
           label="Password"
           maxLength={15}
+          minLength={5}
+          errorText={inputErrorTextPassword}
         />
         <Input
           id="passwordrepeat"
@@ -101,9 +140,14 @@ export function RegisterPage() {
           placeholder="Repeat your password"
           autoComplete="current-password"
           value={passwordRepeat}
-          onChange={(e) => setPasswordRepeat(e.target.value)}
+          onChange={(e) => {
+            setPasswordRepeat(e.target.value);
+            setInputErrorTextPasswordR("");
+          }}
           label="Repeat password"
           maxLength={15}
+          minLength={5}
+          errorText={inputErrorTextPasswordR}
         />
 
         <button
@@ -123,6 +167,7 @@ export function RegisterPage() {
               hover:opacity-90
               disabled:opacity-50
               disabled:cursor-not-allowed
+              cursor-pointer
             "
         >
           {loading ? "Loading..." : "Register"}
@@ -137,6 +182,7 @@ export function RegisterPage() {
             className="
                 text-(--accent)
                 hover:underline
+                cursor-pointer
               "
           >
             Login
