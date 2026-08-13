@@ -5,7 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 function App() {
   return (
     <ErrorBoundary>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </ErrorBoundary>
   );
 }

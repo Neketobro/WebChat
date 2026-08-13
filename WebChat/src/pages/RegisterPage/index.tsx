@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input } from "../../components";
 import { useNavigate } from "react-router";
-import { registerUser } from "../../api/httpClient";
+import { fetchRegister } from "../../api/auth.ts";
 
 type User = {
   username: string;
@@ -67,7 +67,7 @@ export function RegisterPage() {
 
     try {
       setLoading(true);
-      await registerUser(data);
+      await fetchRegister(data);
       await new Promise((resolve) => setTimeout(resolve, 1500));
     } finally {
       setLoading(false);

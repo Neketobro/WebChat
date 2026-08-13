@@ -29,13 +29,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        Component: AuthLayout,
-        children: [
-          {
-            index: true,
-            Component: WebChatPage,
-          },
-        ],
+        Component: WebChatPage,
       },
     ],
   },

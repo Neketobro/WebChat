@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../../components";
 import { useNavigate } from "react-router";
-import { loginUser } from "../../api/httpClient";
-
-type UserLog = {
-  email: string;
-  password: string;
-};
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { loginUser } from "../../store/auth/loginSlice.ts";
+import type { UserLogin } from "../../types/auth.types.ts";
+// import { fetchLogin } from "../../api/auth.ts";
 
 export function LoginPage() {
+  const count = useAppSelector((state) => state.login);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("count ->", count);
+  }, [count, dispatch]);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -17,7 +21,6 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   const [inputErrorTextEmail, setInputErrorTextEmail] = useState<string>("");
-
   const [inputErrorTextPassword, setInputErrorTextPassword] =
     useState<string>("");
 
@@ -25,7 +28,6 @@ export function LoginPage() {
     e.preventDefault();
 
     if (!email.trim() && !password.trim()) {
-      console.log("undefiend email or password");
       setInputErrorTextEmail("Email is required");
       setInputErrorTextPassword("Password is required");
       return;
@@ -35,7 +37,7 @@ export function LoginPage() {
     if (!password.trim())
       return setInputErrorTextPassword("Password is required");
 
-    const data: UserLog = {
+    const data: UserLogin = {
       email,
       password,
     };
@@ -43,15 +45,18 @@ export function LoginPage() {
     try {
       setLoading(true);
 
-      const result = await loginUser(data);
+      const result = await dispatch(loginUser(data)).unwrap(); // loginSlice(data)
 
-      if (!result.success) {
-        console.log("result ->", result);
-      }
+      // if (result && result.user.id) return navigate(`/${result.user.id}`);
+      if (result && result.user.id) return navigate("/");
 
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-    } catch (e) {
-      console.log("error in front ->", e);
+      console.log("RESULT - > ", result);
+
+      // await new Promise((resolve) => setTimeout(resolve, 1500));
+    } catch (error) {
+      const message = error as string;
+      setInputErrorTextEmail(message);
+      setInputErrorTextPassword(message);
     } finally {
       setLoading(false);
     }
@@ -60,7 +65,7 @@ export function LoginPage() {
   return (
     <form onSubmit={handleSubmit} className="flex items-center justify-center">
       <div className="p-6 w-[23wv] min-w-[300px] md:min-w-[400px] bg-(--accent-bg) rounded-sm flex flex-col items-center gap-3">
-        <span>
+        <span className="gap-4">
           <h1>Login</h1>
         </span>
 
@@ -127,7 +132,6 @@ export function LoginPage() {
         <button
           type="submit"
           disabled={loading}
-          onClick={() => handleSubmit}
           className="
               w-full
               h-12
