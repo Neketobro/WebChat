@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import type { PayloadAction } from "@reduxjs/toolkit";
 import type { User, UserLogin } from "../../types/auth.types";
 import { fetchLogin } from "../../api/auth";
 
@@ -32,8 +31,6 @@ export const loginUser = createAsyncThunk<
   try {
     const response = await fetchLogin(data);
 
-    console.log("slice - ", response);
-
     if (response && response.message) {
       throw new Error(response.message);
     }
@@ -57,6 +54,9 @@ export const loginSlice = createSlice({
       state.accessToken = null;
       state.loading = "idle";
       state.error = null;
+
+      if (localStorage.getItem("accessToken"))
+        localStorage.removeItem("accessToken");
     },
   },
 

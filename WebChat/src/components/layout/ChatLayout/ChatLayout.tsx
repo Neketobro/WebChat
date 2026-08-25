@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export function ChatLayout() {
   const [isOpenUserProfileSB, setOpenUserProfileSB] = useState<boolean>(false);
-  const [chatOpen, setChatOpen] = useState<boolean>(true);
+  const [chatOpen, setChatOpen] = useState<boolean>(false);
 
   return (
     <div className="h-[92vh] flex flex-row justify-center px-3 py-1 gap-x-2 overflow-hidden">

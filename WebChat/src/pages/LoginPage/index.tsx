@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Input } from "../../components";
 import { useNavigate } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import { loginUser } from "../../store/auth/loginSlice.ts";
 import type { UserLogin } from "../../types/auth.types.ts";
 // import { fetchLogin } from "../../api/auth.ts";
 
 export function LoginPage() {
-  const count = useAppSelector((state) => state.login);
+  // const count = useAppSelector((state) => state.login);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("count ->", count);
-  }, [count, dispatch]);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -49,8 +45,6 @@ export function LoginPage() {
 
       // if (result && result.user.id) return navigate(`/${result.user.id}`);
       if (result && result.user.id) return navigate("/");
-
-      console.log("RESULT - > ", result);
 
       // await new Promise((resolve) => setTimeout(resolve, 1500));
     } catch (error) {

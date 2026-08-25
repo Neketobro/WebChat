@@ -65,10 +65,28 @@ export function RegisterPage() {
       password,
     };
 
+    // MAKE ERROR MESSAGES FOR TRUE RESULT
+
     try {
       setLoading(true);
-      await fetchRegister(data);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const result = await fetchRegister(data);
+
+      if (result && result.id) return navigate("/");
+
+      if (result && !result.success) {
+        setInputErrorTextEmail(result.message);
+        setInputErrorTextPassword(result.message);
+        setInputErrorTextPasswordR(result.message);
+        setInputErrorTextUsername(result.message);
+      }
+
+      // await new Promise((resolve) => setTimeout(resolve, 1500));
+    } catch (error) {
+      const message = error as string;
+      setInputErrorTextEmail(message);
+      setInputErrorTextPassword(message);
+      setInputErrorTextPasswordR(message);
+      setInputErrorTextUsername(message);
     } finally {
       setLoading(false);
     }

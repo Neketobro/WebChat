@@ -1,4 +1,5 @@
 import { ChatFooter, ChatHeader } from "../../chat";
+import { Alert } from "../../UI";
 import { MessageBubble } from "../MessageBubble";
 
 type Props = {
@@ -8,8 +9,12 @@ type Props = {
   onCloseChat: () => void;
 };
 
-export function ChatWindow({ openUserSidebar, isOpenUserProfileSB, chatOpen, onCloseChat }: Props) {
-
+export function ChatWindow({
+  openUserSidebar,
+  isOpenUserProfileSB,
+  chatOpen,
+  onCloseChat,
+}: Props) {
   const isOpenUserSB = isOpenUserProfileSB
     ? `w-0 lg:w-full lg:min-w-[300px] lg:p-2`
     : "w-full lg:min-w-[300px] p-2";
@@ -26,7 +31,10 @@ export function ChatWindow({ openUserSidebar, isOpenUserProfileSB, chatOpen, onC
           <div
             className={`p-2 flex items-center justify-between gap-4 border-b-[2px] border-(--border)`}
           >
-            <ChatHeader onCloseChat={onCloseChat} openUserSidebar={openUserSidebar} />
+            <ChatHeader
+              onCloseChat={onCloseChat}
+              openUserSidebar={openUserSidebar}
+            />
           </div>
           <div className="flex-1 min-h-0">
             <MessageBubble />
@@ -36,9 +44,7 @@ export function ChatWindow({ openUserSidebar, isOpenUserProfileSB, chatOpen, onC
           </div>
         </>
       ) : (
-        <span className="px-3 rounded-xl bg-(--accent-bg) text-(--accent)">
-          Please select a chat
-        </span>
+        <Alert>Please select a chat</Alert> // сделать в бейдж
       )}
     </div>
   );
